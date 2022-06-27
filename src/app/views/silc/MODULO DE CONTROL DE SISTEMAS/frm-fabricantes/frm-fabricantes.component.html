@@ -1,0 +1,85 @@
+<app-spinner [mostrar]="flag">
+</app-spinner>
+
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-edit"></i><strong>{{titulo}}</strong>
+
+            </div>
+            <div class="card-body table-responsive">
+                <form class="form-horizontal" autocomplete="off" #frmFabricante="ngForm">
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="placa">Placa</label>
+                        <div class="col-md-9">
+                            <input type="text" id="Id_sistemas" name="Id_sistemas" class="form-control" placeholder="Placa" [disabled]="estatus=='detalle'" [(ngModel)]="solicitud.placa" required #placa="ngModel">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for=fecha>Fecha</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="fecha" type="date" name="fecha" placeholder="Fecha" [ngModel]="solicitud.fecha" [value]="solicitud.fecha" (ngModelChange)="solicitud.fecha = $event" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for=hora>Hora</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="hora" type="time" name="hora" placeholder="hora" [ngModel]="solicitud.hora" [value]="solicitud.hora" (ngModelChange)="solicitud.hora = $event">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="tipo_de_estatus">Estado</label>
+                        <div class="col-md-9">
+                            <select id="tipo_de_estatus" name="tipo_de_estatus" class="form-control" [disabled]="estatus=='detalle'" [(ngModel)]="solicitud.estado" #estatus="ngModel">
+                                <option value="PROGRAMADA">PROGRAMADA</option>
+                                <option value="ATENDIDA">ATENDIDA</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Estatus">Activo</label>
+                        <div class="col-md-9">
+                            <label class="switch switch-label switch-success switch-lg">
+                <input type="checkbox" name="sw_activo" class="switch-input" checked [(ngModel)]="solicitud.sw_activo">
+                <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+              </label>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="text-right">
+                    <button type="reset" class="btn btn-brand   btn-square mr-1" style="margin-bottom: 4px" title="CANCELAR" (click)="cancelar()">
+            <i class="fa fa-times"></i>
+            <span>CANCELAR</span>
+          </button>
+                    <button type="reset" class="btn btn-brand btn-warning  btn-warning btn-square mr-1" style="margin-bottom: 4px" title="LIMPIAR" *ngIf="btn_acciones.btn_limpiar" (click)="limpiar(frmFabricante)">
+            <i class="fa fa-refresh"></i>
+            <span>LIMPIAR</span>
+          </button>
+                    <button type="submit" class="btn btn-brand btn-primary  btn-primary btn-square mr-1" style="margin-bottom: 4px" title="GUARDAR" *ngIf="btn_acciones.btn_guardar" (click)="guardar(frmFabricante)" [disabled]="!frmFabricante.form.valid || flag">
+            <i class="fa fa-save"></i>
+            <span>GUARDAR</span>
+          </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!--/.row-->
